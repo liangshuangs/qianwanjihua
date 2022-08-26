@@ -1,0 +1,16 @@
+.jihuamodal {
+    height: 600px;
+}
+#element {
+    width: 200px;
+    height: 500px;
+    flex: 1;
+}
+
+.echart-container {
+    flex: 1;
+}
+.echart {
+    display: flex;
+    align-items: center;
+}
