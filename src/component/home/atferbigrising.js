@@ -2,7 +2,7 @@
  * @Anthor: liangshuang15
  * @Description:
  * @Date: 2022-07-27 18:08:28
- * @LastEditTime: 2022-08-01 20:44:38
+ * @LastEditTime: 2022-08-26 14:34:12
  * @FilePath: /qianwanjihua/src/component/home/atferbigrising.js
  */
 import { Button, Table, Modal, Form, Input, message, InputNumber, Row, Col } from 'antd';
@@ -11,7 +11,7 @@ import { fetchService } from '../../fetch/fetchService';
 import { api } from '../../fetch/api';
 import AddOption from '../common/addOptions';
 import 'moment/locale/zh-cn';
-import Echart from './echart';
+import EchartModal  from '../echartModal';
 
 const Atferbigrising = (props) => {
   const [form] = Form.useForm();
@@ -219,19 +219,7 @@ const Atferbigrising = (props) => {
           y: 480,
         }}
       />
-      <Modal
-        title={record.name}
-        visible={isModalVisible}
-        onOk={() => setIsModalVisible(false)}
-        onCancel={() => setIsModalVisible(false)}
-        footer={null}
-        maskClosable={false}
-        width="80%"
-      >
-        <div>
-          <Echart echartData={echartData} />
-        </div>
-      </Modal>
+      <EchartModal record={record} echartData={echartData} rowData={data} visible={isModalVisible}/>
     </div>
   )
 };

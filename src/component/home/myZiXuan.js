@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Modal, message, Tabs, Popconfirm } from 'antd';
 import { fetchService } from '../../fetch/fetchService';
 import { api } from '../../fetch/api';
-import Echart from './echart';
+import EchartModal  from '../echartModal';
 const { TabPane } = Tabs;
 const MyZiXuan = (props) => {
   useEffect(() => {
@@ -147,19 +147,7 @@ const MyZiXuan = (props) => {
           };
         }}
       />
-      <Modal
-        title={record.name}
-        visible={isModalVisible}
-        onOk={() => setIsModalVisible(false)}
-        onCancel={() => setIsModalVisible(false)}
-        footer={null}
-        maskClosable={false}
-        width="80%"
-      >
-		<div>
-			<Echart echartData={echartData} rowData={data} currentRecord={record}/>
-		</div>
-      </Modal>
+      <EchartModal record={record} echartData={echartData} rowData={data} visible={isModalVisible}/>
     </div>
   )
 }

@@ -2,17 +2,16 @@
  * @Anthor: liangshuang15
  * @Description: 
  * @Date: 2022-07-27 16:38:32
- * @LastEditTime: 2022-08-26 13:32:09
+ * @LastEditTime: 2022-08-26 14:30:06
  * @FilePath: /qianwanjihua/src/component/home/DaDieHuiSheng.js
  */
-import { Button, Table, Modal, Form, Input, message, InputNumber, DatePicker, Row, Col, Select } from 'antd';
+import { Button, Table, Form, Input, message, InputNumber, DatePicker, Row, Col, Select } from 'antd';
 import React, { useState } from 'react';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { fetchService } from '../../fetch/fetchService';
 import { api } from '../../fetch/api';
 import 'moment/locale/zh-cn';
 import locale from 'antd/es/date-picker/locale/zh_CN';
-import Echart from './echart';
+import EchartModal  from '../echartModal';
 import AddOption from '../common/addOptions';
 const { RangePicker } = DatePicker;
 const { Option } = Select;
@@ -104,38 +103,6 @@ const DaDieHuiSheng = (props) => {
                 message.error(res.data.msg || '失败');
             }
         });
-    }
-    const handleLeft = () => {
-        const currentRecordCode = record.code;
-        let preIndex = 0;
-        data.map((item, index) => {
-            if (item.code === currentRecordCode) {
-                preIndex = index - 1;
-            }
-        });
-        if (preIndex < 0) {
-            message.error('已经是第一个啦');
-            return;
-        };
-        let nextRecord = data[preIndex];
-        handleClickRow(nextRecord);
-    }
-    const handleRight = () => {
-        const currentRecordCode = record.code;
-        let nextIndex = 0;
-        data.map((item, index) => {
-            console.log(index)
-            if (item.code === currentRecordCode) {
-                nextIndex = index + 1;
-            }
-        });
-        console.log(nextIndex, data.length)
-        if (nextIndex >= data.length) {
-            message.error('最后一个啦');
-            return;
-        }
-        let nextRecord = data[nextIndex];
-        handleClickRow(nextRecord);
     }
     const onFinish = (values) => {
         const params = {
@@ -290,23 +257,7 @@ const DaDieHuiSheng = (props) => {
                     y: 480,
                 }}
             />
-            <Modal
-                title={record.name}
-                visible={isModalVisible}
-                onOk={() => setIsModalVisible(false)}
-                onCancel={() => setIsModalVisible(false)}
-                footer={null}
-                maskClosable={false}
-                width="80%"
-            >
-                <div className='echart'>
-                    <div onClick={handleLeft}><LeftOutlined style={{ fontSize: '24px' }}/></div>
-                    <div className='echart-container'>
-                        <Echart echartData={echartData} rowData={data} currentRecord={record} />
-                    </div>
-                    <div onClick={handleRight}><RightOutlined style={{ fontSize: '24px' }}/></div>
-                </div> 
-            </Modal>
+            <EchartModal record={record} echartData={echartData} rowData={data} visible={isModalVisible}/>
         </div>
     )
 }
