@@ -2,7 +2,7 @@
  * @Anthor: liangshuang15
  * @Description: 
  * @Date: 2022-08-26 13:53:09
- * @LastEditTime: 2022-09-07 17:15:12
+ * @LastEditTime: 2022-09-07 17:32:35
  * @FilePath: /qianwanjihua/src/component/echartModal/index.js
  */
 import { Modal, message, Button } from 'antd';
@@ -90,7 +90,7 @@ const EchartModal = (props) => {
                 width="80%"
             >
                 <div>
-                    {props.type ? <AddOption record={record} type={props.type}/> : ''}
+                    {props.children}
                     
                     <div className='echart'>
                         <div onClick={handleLeft}><LeftOutlined style={{ fontSize: '24px' }}/></div>

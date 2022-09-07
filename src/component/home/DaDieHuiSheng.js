@@ -2,7 +2,7 @@
  * @Anthor: liangshuang15
  * @Description: 
  * @Date: 2022-07-27 16:38:32
- * @LastEditTime: 2022-09-07 17:11:59
+ * @LastEditTime: 2022-09-07 17:29:28
  * @FilePath: /qianwanjihua/src/component/home/DaDieHuiSheng.js
  */
 import { Button, Table, Form, Input, message, InputNumber, DatePicker, Row, Col, Select } from 'antd';
@@ -260,7 +260,9 @@ const DaDieHuiSheng = (props) => {
                     y: 480,
                 }}
             />
-            <EchartModal type="recover" record={record} echartData={echartData} rowData={data} visible={isModalVisible} closeEchartModal={closeEchartModal}/>
+            <EchartModal record={record} echartData={echartData} rowData={data} visible={isModalVisible} closeEchartModal={closeEchartModal}>
+                <AddOption record={record} type="recover" />
+            </EchartModal>   
         </div>
     )
 }

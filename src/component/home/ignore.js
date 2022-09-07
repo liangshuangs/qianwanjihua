@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Modal, message, Tabs, Popconfirm } from 'antd';
 import { fetchService } from '../../fetch/fetchService';
 import { api } from '../../fetch/api';
-import Echart from './echart';
+import EchartModal  from '../echartModal';
 const { TabPane } = Tabs;
 
 const Ignore = (props) => {
@@ -146,6 +146,9 @@ const Ignore = (props) => {
     let listResult = TabData.map(function (value, key) {
         return <TabPane tab={value.name} key={value.key}></TabPane>
     })
+    const closeEchartModal = () => {
+        setIsModalVisible(false);
+    }
     return (
         <div>
             <Tabs onChange={onChange} defaultActiveKey={Tag}>
@@ -160,19 +163,13 @@ const Ignore = (props) => {
                     };
                 }}
             />
-            <Modal
-                title={record.name}
-                visible={isModalVisible}
-                onOk={() => setIsModalVisible(false)}
-                onCancel={() => setIsModalVisible(false)}
-                footer={null}
-                maskClosable={false}
-                width="80%"
-            >
-                <div>
-                    <Echart echartData={echartData} />
-                </div>
-            </Modal>
+            <EchartModal closeEchartModal={closeEchartModal} record={record} echartData={echartData} rowData={data} visible={isModalVisible}>
+                    <div>
+                        <Popconfirm title="是否确认取消?" onConfirm={() => handleDel(record.id)}>
+                            <a>删除</a>
+                        </Popconfirm>
+                    </div>
+            </EchartModal>
         </div>
     )
 }

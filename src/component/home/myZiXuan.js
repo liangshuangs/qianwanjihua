@@ -150,7 +150,13 @@ const MyZiXuan = (props) => {
           };
         }}
       />
-      <EchartModal closeEchartModal={closeEchartModal} record={record} echartData={echartData} rowData={data} visible={isModalVisible}/>
+      <EchartModal closeEchartModal={closeEchartModal} record={record} echartData={echartData} rowData={data} visible={isModalVisible}>
+      <div>
+                  <Popconfirm title="是否确认取消?" onConfirm={() => handleDel(record.id)}>
+                        <a>删除</a>
+                  </Popconfirm>
+              </div>
+      </EchartModal>
     </div>
   )
 }

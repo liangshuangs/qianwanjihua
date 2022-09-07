@@ -2,7 +2,7 @@
  * @Anthor: liangshuang15
  * @Description:
  * @Date: 2022-07-27 18:08:28
- * @LastEditTime: 2022-09-07 17:13:18
+ * @LastEditTime: 2022-09-07 17:29:54
  * @FilePath: /qianwanjihua/src/component/home/atferbigrising.js
  */
 import { Button, Table, Modal, Form, Input, message, InputNumber, Row, Col } from 'antd';
@@ -222,7 +222,9 @@ const Atferbigrising = (props) => {
           y: 480,
         }}
       />
-      <EchartModal type="atferbigrising" record={record} echartData={echartData} rowData={data} visible={isModalVisible} closeEchartModal={closeEchartModal}/>
+      <EchartModal record={record} echartData={echartData} rowData={data} visible={isModalVisible} closeEchartModal={closeEchartModal}>
+      	<AddOption record={record} type="atferbigrising" />
+      </EchartModal>
     </div>
   )
 };
