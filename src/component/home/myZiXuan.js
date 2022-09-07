@@ -126,6 +126,9 @@ const MyZiXuan = (props) => {
       }
     });
   }
+  const closeEchartModal = () => {
+    setIsModalVisible(false);
+  }
   const onChange = (key) => {
     setTag(key);
     getList(key);
@@ -147,7 +150,7 @@ const MyZiXuan = (props) => {
           };
         }}
       />
-      <EchartModal record={record} echartData={echartData} rowData={data} visible={isModalVisible}/>
+      <EchartModal closeEchartModal={closeEchartModal} record={record} echartData={echartData} rowData={data} visible={isModalVisible}/>
     </div>
   )
 }

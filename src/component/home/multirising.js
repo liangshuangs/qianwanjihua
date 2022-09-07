@@ -3,7 +3,7 @@
  * @Anthor: liangshuang15
  * @Description:
  * @Date: 2022-07-27 18:08:28
- * @LastEditTime: 2022-08-26 14:33:17
+ * @LastEditTime: 2022-09-07 17:13:50
  * @FilePath: /qianwanjihua/src/component/home/multirising.js
  */
 import { Button, Table, Modal, Form, Input, message, InputNumber, DatePicker, Row, Col, Select } from 'antd';
@@ -115,6 +115,9 @@ const Multirising = (props) => {
                 message.error(res.data.msg || '失败');
             }
         });
+    }
+    const closeEchartModal = () => {
+        setIsModalVisible(false);
     }
     return (
         <div>
@@ -231,7 +234,7 @@ const Multirising = (props) => {
                     y:480,
                 }}
             />
-            <EchartModal record={record} echartData={echartData} rowData={data} visible={isModalVisible}/>
+            <EchartModal type="multirising" closeEchartModal={closeEchartModal} record={record} echartData={echartData} rowData={data} visible={isModalVisible}/>
         </div>
     )
 };

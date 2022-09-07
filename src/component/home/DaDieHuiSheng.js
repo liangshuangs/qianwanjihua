@@ -2,7 +2,7 @@
  * @Anthor: liangshuang15
  * @Description: 
  * @Date: 2022-07-27 16:38:32
- * @LastEditTime: 2022-08-26 14:30:06
+ * @LastEditTime: 2022-09-07 17:11:59
  * @FilePath: /qianwanjihua/src/component/home/DaDieHuiSheng.js
  */
 import { Button, Table, Form, Input, message, InputNumber, DatePicker, Row, Col, Select } from 'antd';
@@ -124,6 +124,9 @@ const DaDieHuiSheng = (props) => {
                 message.error(res.data.msg || '失败');
             }
         });
+    }
+    const closeEchartModal = () => {
+        setIsModalVisible(false);
     }
     return (
         <div>
@@ -257,7 +260,7 @@ const DaDieHuiSheng = (props) => {
                     y: 480,
                 }}
             />
-            <EchartModal record={record} echartData={echartData} rowData={data} visible={isModalVisible}/>
+            <EchartModal type="recover" record={record} echartData={echartData} rowData={data} visible={isModalVisible} closeEchartModal={closeEchartModal}/>
         </div>
     )
 }

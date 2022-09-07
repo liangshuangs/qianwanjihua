@@ -2,15 +2,16 @@
  * @Anthor: liangshuang15
  * @Description: 
  * @Date: 2022-08-26 13:53:09
- * @LastEditTime: 2022-08-26 14:29:46
+ * @LastEditTime: 2022-09-07 17:15:12
  * @FilePath: /qianwanjihua/src/component/echartModal/index.js
  */
-import { Modal, message } from 'antd';
+import { Modal, message, Button } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { fetchService } from '../../fetch/fetchService';
 import { api } from '../../fetch/api';
 import Echart from '../home/echart';
+import AddOption from '../common/addOptions';
 
 const EchartModal = (props) => {
     const [record, setRecord] = useState(props.record);
@@ -73,24 +74,35 @@ const EchartModal = (props) => {
         let nextRecord = data[nextIndex];
         handleClickRow(nextRecord);
     }
+    const closeModal = () => {
+        setVisible(false);
+        props.closeEchartModal && props.closeEchartModal();
+    }
     return(
-        <Modal
+        <div>
+            <Modal
                 title={record.name}
                 visible={visible}
-                onOk={() => setVisible(false)}
-                onCancel={() => setVisible(false)}
+                onOk={() => closeModal()}
+                onCancel={() => closeModal()}
                 footer={null}
                 maskClosable={false}
                 width="80%"
             >
-                <div className='echart'>
-                    <div onClick={handleLeft}><LeftOutlined style={{ fontSize: '24px' }}/></div>
-                    <div className='echart-container'>
-                        <Echart echartData={echartData} />
-                    </div>
-                    <div onClick={handleRight}><RightOutlined style={{ fontSize: '24px' }}/></div>
-                </div> 
+                <div>
+                    {props.type ? <AddOption record={record} type={props.type}/> : ''}
+                    
+                    <div className='echart'>
+                        <div onClick={handleLeft}><LeftOutlined style={{ fontSize: '24px' }}/></div>
+                        <div className='echart-container'>
+                            <Echart echartData={echartData} />
+                        </div>
+                        <div onClick={handleRight}><RightOutlined style={{ fontSize: '24px' }}/></div>
+                    </div> 
+                </div>
             </Modal>
+        </div>
+        
     );
 }
 export default EchartModal;
